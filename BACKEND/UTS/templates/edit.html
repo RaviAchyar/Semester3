@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Armada</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1>Edit Armada</h1>
+        <form method="POST">
+            <div class="form-group">
+                <label>Nama Pesawat</label>
+                <input type="text" name="nama_pesawat" value="{{ armada[1] }}" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Maskapai</label>
+                <input type="text" name="maskapai" value="{{ armada[2] }}" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Kapasitas</label>
+                <input type="number" name="kapasitas" value="{{ armada[3] }}" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Rute</label>
+                <input type="text" name="rute" value="{{ armada[4] }}" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Status</label>
+                <select name="status" class="form-control" required>
+                    <option value="Aktif" {% if armada[5] == 'Aktif' %}selected{% endif %}>Aktif</option>
+                    <option value="Maintenance" {% if armada[5] == 'Maintenance' %}selected{% endif %}>Maintenance</option>
+                    <option value="Tidak Aktif" {% if armada[5] == 'Tidak Aktif' %}selected{% endif %}>Tidak Aktif</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Departure Time</label>
+                <input type="datetime-local" name="departure_time" value="{{ armada[6]|replace(' ', 'T') }}" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Arrival Time</label>
+                <input type="datetime-local" name="arrival_time" value="{{ armada[7]|replace(' ', 'T') }}" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-warning mt-3">Update</button>
+            <a href="{{ url_for('index') }}" class="btn btn-secondary mt-3">Kembali</a>
+        </form>
+    </div>
+</body>
+
+</html>
